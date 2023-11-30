@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web ML content-based image retrieval demo</title>
+
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            /* This ensures the body takes at least the full height of the viewport */
+        }
+
+        .container2 {
+            flex: 1;
+            /* This makes the container take the remaining height */
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container2">
+        <!-- Your existing content goes here -->
+        <nav class="navbar bg-body-tertiary mb-3">
+            <div class="container">
+                <span class="navbar-brand mb-0 h1">Web ML content-based image retrieval demo</span>
+            </div>
+        </nav>
+        <div class="container">
+            <!-- As a heading -->
+
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-image"></i> Image Search</h5>
+                            <div class="mb-3">
+                                <input class="form-control" type="file" id="queryformFile" disabled>
+                            </div>
+                            <div id="resultrow" class="row d-none">
+                                <div class="col-6">
+                                    <p>Query image:</p>
+                                    <div id="imgbox1">
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <p>Most similar image:</p>
+
+
+                                    <div id="imgbox2">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-images"></i> Upload Images to DB</h5>
+
+                            <div class="mb-3">
+                                <input class="form-control" type="file" id="imageInput" multiple disabled>
+                            </div>
+                            <div id="result"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="mt-3">
+                <div class="card">
+
+                    <div class="card-body">
+
+
+                        <h5 class="card-title"><i class="bi bi-database"></i> Images DB</h5>
+                        <!-- 
+                        <div class="container text-center">
+                            <div id="imageContainer" class="row row-cols-2">
+                                <div class="col">Column</div>
+                                <div class="col">Column</div>
+                                <div class="col">Column</div>
+                                <div class="col">Column</div>
+                            </div>
+                        </div> -->
+
+                        <div class="row row-cols-5" id="imageContainer">
+
+                        </div> <!-- Container for displaying the selected image -->
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div class="footer">
+        <!-- Your footer content goes here -->
+        &copy; 2023 Sahand Babali
+    </div>
+
+
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Model loaded</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Model loaded successfully
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast2" class="toast text-bg-warning" role="alert" data-autohide="false" aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Model is loading</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Please wait while the model is loading.
+            </div>
+        </div>
+    </div>
+
+
+    <script defer src="./script.js"></script>
+</body>
+
+</html>
